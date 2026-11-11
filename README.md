@@ -1,2 +1,2 @@
-# Trabalho-Interdisciplinar-2-per-odo
+# Trabalho-Interdisciplinar-2-periodo
 Trabalho em grupo interdisciplinar
