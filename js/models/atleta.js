@@ -72,9 +72,9 @@ class Atleta {
   set peso(valor) {
     this.#peso = valor;
   }
- toJSON() {
+
+  toJSON() {
     return {
-      ...(typeof super.toJSON === "function" ? super.toJSON() : {}),
       id: this.#id,
       idade: this.#idade,
       cpf: this.#cpf,
@@ -84,6 +84,7 @@ class Atleta {
       peso: this.#peso,
     };
   }
+
   toString() {
     return `Atleta{id=${this.#id}, idade=${this.#idade}, cpf='${this.#cpf}', nome='${this.#nome}', contato='${this.#contato}', modalidade='${this.#modalidade}', peso=${this.#peso}}`;
   }

@@ -5,12 +5,11 @@ class Maratona extends Competicao {
   #fechamentoVias;
   #pontosHidratacao;
 
-  constructor(id, horario, data, nome, local, distancia, altimetria, objetivo, fechamentoVias, pontosHidratacao
-  ) {
+  constructor(id, horario, data, nome, local, distancia, altimetria, objetivo, fechamentoVias, pontosHidratacao) {
     super(id, horario, data, nome, local, distancia, altimetria);
-    this.objetivo = objetivo;
-    this.fechamentoVias = fechamentoVias;
-    this.pontosHidratacao = pontosHidratacao;
+    this.#objetivo = objetivo;
+    this.#fechamentoVias = fechamentoVias;
+    this.#pontosHidratacao = pontosHidratacao;
   }
 
   get objetivo() {
@@ -18,10 +17,7 @@ class Maratona extends Competicao {
   }
 
   set objetivo(valor) {
-    if (typeof valor !== "string" || !valor.trim()) {
-      throw new Error("Objetivo deve ser um texto não vazio.");
-    }
-    this.#objetivo = valor.trim();
+    this.#objetivo = valor;
   }
 
   get fechamentoVias() {
@@ -37,16 +33,12 @@ class Maratona extends Competicao {
   }
 
   set pontosHidratacao(valor) {
-    const numero = Number(valor);
-    if (!Number.isInteger(numero) || numero < 0) {
-      throw new Error("Pontos de hidratação deve ser um número inteiro maior ou igual a zero.");
-    }
-    this.#pontosHidratacao = numero;
+    this.#pontosHidratacao = valor;
   }
 
   toJSON() {
     return {
-      ...(typeof super.toJSON === "function" ? super.toJSON() : {}),
+      ...super.toJSON(),
       objetivo: this.#objetivo,
       fechamentoVias: this.#fechamentoVias,
       pontosHidratacao: this.#pontosHidratacao,
