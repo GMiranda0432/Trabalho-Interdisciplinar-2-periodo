@@ -35,7 +35,14 @@ class TrailRunning extends Competicao {
   set climaEsperado(valor) {
     this.#climaEsperado = valor;
   }
-
+  toJSON() {
+    return {
+      ...(typeof super.toJSON === "function" ? super.toJSON() : {}),
+      checkPoint: this.#checkPoint,
+      grauDificuldade: this.#grauDificuldade,
+      climaEsperado: this.#climaEsperado,
+    };
+  }
   toString() {
     return `TrailRunning{${super.toString()}, checkPoint='${this.#checkPoint}', grauDificuldade='${this.#grauDificuldade}', climaEsperado='${this.#climaEsperado}'}`;
   }

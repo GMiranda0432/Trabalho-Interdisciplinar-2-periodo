@@ -72,7 +72,18 @@ class Competicao {
   set altimetria(valor) {
     this.#altimetria = valor;
   }
-
+ toJSON() {
+    return {
+      ...(typeof super.toJSON === "function" ? super.toJSON() : {}),
+      id: this.#id,
+      horario: this.#horario,
+      data: this.#data,
+      nome: this.#nome,
+      local: this.#local,
+      distancia: this.#distancia,
+      altimetria: this.#altimetria,
+    };
+  }
   toString() {
     return `Competicao{id=${this.#id}, horario='${this.#horario}', data='${this.#data}', nome='${this.#nome}', local='${this.#local}', distancia=${this.#distancia}, altimetria=${this.#altimetria}}`;
   }
