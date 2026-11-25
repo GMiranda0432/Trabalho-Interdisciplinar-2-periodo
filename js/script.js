@@ -28,9 +28,14 @@ function idRepetido(vetor, id) {
   return vetor.some((item) => item.id === id);
 }
 
-// Verifica se o cpf já pertence a outro atleta, ignorando o próprio id na edição
+// Verifica se o cpf já pertence a outro atleta
 function cpfRepetido(cpf, id) {
   return atletaController.vetAtletas.some((atleta) => atleta.cpf === cpf && atleta.id !== id);
+}
+
+// Verifica se o cpf tem 11 dígitos
+function cpfValido(cpf) {
+  return /^\d{11}$/.test(cpf) || /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(cpf);
 }
 
 // Valida os dados do atleta e devolve a mensagem de erro, ou "" se estiver tudo certo
@@ -46,6 +51,8 @@ function validarAtleta(dados, id) {
     erro = "O peso não pode ser negativo";
   } else if (dados.cpf.trim() === "") {
     erro = "O CPF é obrigatório";
+  } else if (!cpfValido(dados.cpf.trim())) {
+    erro = "O CPF deve ter 11 dígitos (ex.: 000.000.000-00)";
   } else if (cpfRepetido(dados.cpf, id)) {
     erro = "Já existe um atleta com esse CPF";
   }
