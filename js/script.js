@@ -23,6 +23,50 @@ function montarCompeticao(d) {
   return new TrailRunning(d.id, d.horario, d.data, d.nome, d.local, d.distancia, d.altimetria, d.checkPoint, d.grauDificuldade, d.climaEsperado);
 }
 
+// Verifica se já existe um registro com o id informado
+function idRepetido(vetor, id) {
+  return vetor.some((item) => item.id === id);
+}
+
+// Verifica se o cpf já pertence a outro atleta, ignorando o próprio id na edição
+function cpfRepetido(cpf, id) {
+  return atletaController.vetAtletas.some((atleta) => atleta.cpf === cpf && atleta.id !== id);
+}
+
+// Valida os dados do atleta e devolve a mensagem de erro, ou "" se estiver tudo certo
+function validarAtleta(dados, id) {
+  let erro = "";
+  if (dados.nome.trim() === "") {
+    erro = "O nome do atleta é obrigatório";
+  } else if (/\d/.test(dados.nome)) {
+    erro = "O nome do atleta não pode conter números";
+  } else if (Number.isNaN(dados.idade) || dados.idade < 0) {
+    erro = "A idade não pode ser negativa";
+  } else if (dados.peso < 0) {
+    erro = "O peso não pode ser negativo";
+  } else if (dados.cpf.trim() === "") {
+    erro = "O CPF é obrigatório";
+  } else if (cpfRepetido(dados.cpf, id)) {
+    erro = "Já existe um atleta com esse CPF";
+  }
+  return erro;
+}
+
+// Valida os dados da competição e devolve a mensagem de erro, ou "" se estiver tudo certo
+function validarCompeticao(dados) {
+  let erro = "";
+  if (dados.nome.trim() === "") {
+    erro = "O nome da competição é obrigatório";
+  } else if (Number.isNaN(dados.distancia) || dados.distancia < 0) {
+    erro = "A distância não pode ser negativa";
+  } else if (dados.altimetria < 0) {
+    erro = "A altimetria não pode ser negativa";
+  } else if (dados.tipo === "Maratona" && dados.pontosHidratacao < 0) {
+    erro = "Os pontos de hidratação não podem ser negativos";
+  }
+  return erro;
+}
+
 // Grava os dois arrays no localStorage
 function salvar() {
   localStorage.setItem("atletas", JSON.stringify(atletaController.vetAtletas));
@@ -52,9 +96,18 @@ document.querySelector("#form").addEventListener("submit", (evento) => evento.pr
 // Cada botão abaixo chama o método correspondente do controller e mostra o resultado
 
 document.querySelector("#cadastrarAtleta").addEventListener("click", () => {
-  atletaController.cadastrarAtleta(montarAtleta({ ...view.lerAtleta(), id: Date.now() }));
-  salvar();
-  view.mostrarLista(atletaController.vetAtletas);
+  const dados = view.lerAtleta();
+  const id = Date.now();
+  const erro = validarAtleta(dados, id);
+  if (erro) {
+    view.mostrar(erro);
+  } else if (idRepetido(atletaController.vetAtletas, id)) {
+    view.mostrar("Já existe um atleta com esse id");
+  } else {
+    atletaController.cadastrarAtleta(montarAtleta({ ...dados, id }));
+    salvar();
+    view.mostrarLista(atletaController.vetAtletas);
+  }
 });
 
 document.querySelector("#buscarAtleta").addEventListener("click", () => {
@@ -64,9 +117,17 @@ document.querySelector("#buscarAtleta").addEventListener("click", () => {
 
 document.querySelector("#atualizarAtleta").addEventListener("click", () => {
   const id = view.lerIdAtleta();
-  atletaController.atualizarAtleta(id, montarAtleta({ ...view.lerAtleta(), id }));
-  salvar();
-  view.mostrarLista(atletaController.vetAtletas);
+  const dados = view.lerAtleta();
+  const erro = validarAtleta(dados, id);
+  if (erro) {
+    view.mostrar(erro);
+  } else if (!atletaController.buscarAtleta(id)) {
+    view.mostrar("Atleta não encontrado");
+  } else {
+    atletaController.atualizarAtleta(id, montarAtleta({ ...dados, id }));
+    salvar();
+    view.mostrarLista(atletaController.vetAtletas);
+  }
 });
 
 document.querySelector("#removerAtleta").addEventListener("click", () => {
@@ -84,9 +145,18 @@ document.querySelector("#listarAtletas").addEventListener("click", () => {
 });
 
 document.querySelector("#cadastrarCompeticao").addEventListener("click", () => {
-  competicaoController.cadastrarCompeticao(montarCompeticao({ ...view.lerCompeticao(), id: Date.now() }));
-  salvar();
-  view.mostrarLista(competicaoController.vetCompeticoes);
+  const dados = view.lerCompeticao();
+  const id = Date.now();
+  const erro = validarCompeticao(dados);
+  if (erro) {
+    view.mostrar(erro);
+  } else if (idRepetido(competicaoController.vetCompeticoes, id)) {
+    view.mostrar("Já existe uma competição com esse id");
+  } else {
+    competicaoController.cadastrarCompeticao(montarCompeticao({ ...dados, id }));
+    salvar();
+    view.mostrarLista(competicaoController.vetCompeticoes);
+  }
 });
 
 document.querySelector("#buscarCompeticao").addEventListener("click", () => {
@@ -96,9 +166,17 @@ document.querySelector("#buscarCompeticao").addEventListener("click", () => {
 
 document.querySelector("#atualizarCompeticao").addEventListener("click", () => {
   const id = view.lerIdCompeticao();
-  competicaoController.atualizarCompeticao(id, montarCompeticao({ ...view.lerCompeticao(), id }));
-  salvar();
-  view.mostrarLista(competicaoController.vetCompeticoes);
+  const dados = view.lerCompeticao();
+  const erro = validarCompeticao(dados);
+  if (erro) {
+    view.mostrar(erro);
+  } else if (!competicaoController.buscarCompeticao(id)) {
+    view.mostrar("Competição não encontrada");
+  } else {
+    competicaoController.atualizarCompeticao(id, montarCompeticao({ ...dados, id }));
+    salvar();
+    view.mostrarLista(competicaoController.vetCompeticoes);
+  }
 });
 
 document.querySelector("#removerCompeticao").addEventListener("click", () => {
