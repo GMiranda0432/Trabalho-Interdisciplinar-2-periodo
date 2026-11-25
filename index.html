@@ -1,12 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Trabalho Final Interdisciplinar 2026</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    
+    <h1>Gerenciamento de Competições de Corridas</h1>
+
+    <form id="form">
+        <fieldset>
+            <legend>Atleta</legend>
+            <input id="atletaIdade" type="number" placeholder="idade">
+            <input id="atletaCpf" type="text" placeholder="cpf">
+            <input id="atletaNome" type="text" placeholder="nome">
+            <input id="atletaContato" type="text" placeholder="contato">
+            <select id="atletaModalidade">
+                <option value="Maratona">Maratona</option>
+                <option value="Trail Running">Trail Running</option>
+            </select>
+            <input id="atletaPeso" type="number" step="0.1" placeholder="peso">
+        </fieldset>
+
+        <fieldset>
+            <legend>Competição</legend>
+            <select id="tipo">
+                <option value="Maratona">Maratona</option>
+                <option value="TrailRunning">TrailRunning</option>
+            </select>
+            <input id="compHorario" type="text" placeholder="horario">
+            <input id="compData" type="text" placeholder="data">
+            <input id="compNome" type="text" placeholder="nome">
+            <input id="compLocal" type="text" placeholder="local">
+            <input id="compDistancia" type="number" step="0.001" placeholder="distancia">
+            <input id="compAltimetria" type="number" step="0.1" placeholder="altimetria">
+            <input id="compObjetivo" type="text" placeholder="objetivo">
+            <input id="compFechamentoVias" type="text" placeholder="fechamentoVias">
+            <input id="compPontosHidratacao" type="number" placeholder="pontosHidratacao">
+            <input id="compCheckPoint" type="text" placeholder="checkPoint">
+            <input id="compGrauDificuldade" type="text" placeholder="grauDificuldade">
+            <input id="compClimaEsperado" type="text" placeholder="climaEsperado">
+        </fieldset>
+
+        <fieldset>
+            <legend>Atleta — operações</legend>
+            <label for="atletaId">id do atleta (buscar / atualizar / remover):</label>
+            <input id="atletaId" type="number">
+            <div>
+                <button id="cadastrarAtleta" type="button">cadastrarAtleta</button>
+                <button id="buscarAtleta" type="button">buscarAtleta</button>
+                <button id="atualizarAtleta" type="button">atualizarAtleta</button>
+                <button id="removerAtleta" type="button">removerAtleta</button>
+                <button id="filtrarAtletas" type="button">filtrarPorModalidade</button>
+                <button id="listarAtletas" type="button">listarAtletas</button>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Competição — operações</legend>
+            <label for="compId">id da competição (buscar / atualizar / remover):</label>
+            <input id="compId" type="number">
+            <div>
+                <button id="cadastrarCompeticao" type="button">cadastrarCompeticao</button>
+                <button id="buscarCompeticao" type="button">buscarCompeticao</button>
+                <button id="atualizarCompeticao" type="button">atualizarCompeticao</button>
+                <button id="removerCompeticao" type="button">removerCompeticao</button>
+                <button id="filtrarCompeticoes" type="button">filtrarPorTipo</button>
+                <button id="listarCompeticoes" type="button">listarCompeticoes</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <pre id="saida"></pre>
+
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

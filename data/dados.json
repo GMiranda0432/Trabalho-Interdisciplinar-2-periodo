@@ -1,0 +1,94 @@
+{
+  "atletas": [
+    {
+      "id": 1,
+      "idade": 32,
+      "cpf": "111.111.111-11",
+      "nome": "Ana Souza",
+      "contato": "(27) 99999-1111",
+      "modalidade": "Maratona",
+      "peso": 58.5
+    },
+    {
+      "id": 2,
+      "idade": 41,
+      "cpf": "222.222.222-22",
+      "nome": "Bruno Lima",
+      "contato": "(27) 99999-2222",
+      "modalidade": "Maratona",
+      "peso": 74.2
+    },
+    {
+      "id": 3,
+      "idade": 27,
+      "cpf": "333.333.333-33",
+      "nome": "Carla Dias",
+      "contato": "(27) 99999-3333",
+      "modalidade": "Trail Running",
+      "peso": 60.0
+    },
+    {
+      "id": 4,
+      "idade": 35,
+      "cpf": "444.444.444-44",
+      "nome": "Diego Alves",
+      "contato": "(27) 99999-4444",
+      "modalidade": "Trail Running",
+      "peso": 68.7
+    }
+  ],
+  "competicoes": [
+    {
+      "tipo": "Maratona",
+      "id": 1,
+      "horario": "07:00",
+      "data": "15/03/2026",
+      "nome": "Maratona de Vitoria",
+      "local": "Vitoria - ES",
+      "distancia": 42.195,
+      "altimetria": 180.0,
+      "objetivo": "Percurso urbano plano",
+      "fechamentoVias": "06:00 as 12:00",
+      "pontosHidratacao": 8
+    },
+    {
+      "tipo": "Maratona",
+      "id": 2,
+      "horario": "06:30",
+      "data": "10/05/2026",
+      "nome": "Maratona do Litoral",
+      "local": "Guarapari - ES",
+      "distancia": 42.195,
+      "altimetria": 250.0,
+      "objetivo": "Percurso urbano com vista para o mar",
+      "fechamentoVias": "05:30 as 13:00",
+      "pontosHidratacao": 10
+    },
+    {
+      "tipo": "TrailRunning",
+      "id": 3,
+      "horario": "08:00",
+      "data": "21/06/2026",
+      "nome": "Trail das Pedras",
+      "local": "Santa Teresa - ES",
+      "distancia": 25.0,
+      "altimetria": 1200.0,
+      "checkPoint": "CP1 - Mirante",
+      "grauDificuldade": "Dificil",
+      "climaEsperado": "Sol com nuvens"
+    },
+    {
+      "tipo": "TrailRunning",
+      "id": 4,
+      "horario": "05:00",
+      "data": "12/09/2026",
+      "nome": "Ultra Trail Capixaba",
+      "local": "Venda Nova do Imigrante - ES",
+      "distancia": 50.0,
+      "altimetria": 2600.0,
+      "checkPoint": "CP2 - Pedra do Elefante",
+      "grauDificuldade": "Muito dificil",
+      "climaEsperado": "Neblina e chuva"
+    }
+  ]
+}
