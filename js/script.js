@@ -9,6 +9,11 @@ import View from "./views/view.js";
 const view = new View();
 const atletaController = new AtletaController();
 const competicaoController = new CompeticaoController();
+let proximoID = Number(localStorage.getItem("proximoID"));
+
+if (!Number.isInteger(proximoID) || proximoID < 1) {
+  proximoID = 1;
+}
 
 // Cria um Atleta a partir de um objeto literal
 function montarAtleta(d) {
@@ -23,9 +28,33 @@ function montarCompeticao(d) {
   return new TrailRunning(d.id, d.horario, d.data, d.nome, d.local, d.distancia, d.altimetria, d.checkPoint, d.grauDificuldade, d.climaEsperado);
 }
 
-// Verifica se já existe um registro com o id informado
-function idRepetido(vetor, id) {
-  return vetor.some((item) => item.id === id);
+function idRepetido(id) {
+  return atletaController.vetAtletas.some((atleta) => atleta.id === id)
+    || competicaoController.vetCompeticoes.some((competicao) => competicao.id === id);
+}
+
+function proximoIDDisponivel() {
+  while (idRepetido(proximoID)) {
+    proximoID++;
+  }
+  return proximoID;
+}
+
+function ajustarProximoID() {
+  let maiorID = 0;
+  atletaController.vetAtletas.forEach((atleta) => {
+    if (Number(atleta.id) > maiorID) {
+      maiorID = Number(atleta.id);
+    }
+  });
+  competicaoController.vetCompeticoes.forEach((competicao) => {
+    if (Number(competicao.id) > maiorID) {
+      maiorID = Number(competicao.id);
+    }
+  });
+  if (proximoID <= maiorID) {
+    proximoID = maiorID + 1;
+  }
 }
 
 // Verifica se o cpf já pertence a outro atleta
@@ -79,6 +108,7 @@ function salvar() {
   localStorage.setItem("atletas", JSON.stringify(atletaController.vetAtletas));
   const competicoes = competicaoController.vetCompeticoes.map((c) => ({ tipo: c.constructor.name, ...c.toJSON() }));
   localStorage.setItem("competicoes", JSON.stringify(competicoes));
+  localStorage.setItem("proximoID", String(proximoID));
 }
 
 // Lê o dados.json na primeira execução e o localStorage nas seguintes
@@ -92,8 +122,9 @@ async function carregar() {
     const dados = await resposta.json();
     dados.atletas.forEach((d) => atletaController.cadastrarAtleta(montarAtleta(d)));
     dados.competicoes.forEach((d) => competicaoController.cadastrarCompeticao(montarCompeticao(d)));
-    salvar();
   }
+  ajustarProximoID();
+  salvar();
   view.mostrar(`Carregados ${atletaController.vetAtletas.length} atletas e ${competicaoController.vetCompeticoes.length} competições`);
 }
 
@@ -104,14 +135,13 @@ document.querySelector("#form").addEventListener("submit", (evento) => evento.pr
 
 document.querySelector("#cadastrarAtleta").addEventListener("click", () => {
   const dados = view.lerAtleta();
-  const id = Date.now();
+  const id = proximoIDDisponivel();
   const erro = validarAtleta(dados, id);
   if (erro) {
     view.mostrar(erro);
-  } else if (idRepetido(atletaController.vetAtletas, id)) {
-    view.mostrar("Já existe um atleta com esse id");
   } else {
     atletaController.cadastrarAtleta(montarAtleta({ ...dados, id }));
+    proximoID++;
     salvar();
     view.mostrarLista(atletaController.vetAtletas);
   }
@@ -153,14 +183,13 @@ document.querySelector("#listarAtletas").addEventListener("click", () => {
 
 document.querySelector("#cadastrarCompeticao").addEventListener("click", () => {
   const dados = view.lerCompeticao();
-  const id = Date.now();
+  const id = proximoIDDisponivel();
   const erro = validarCompeticao(dados);
   if (erro) {
     view.mostrar(erro);
-  } else if (idRepetido(competicaoController.vetCompeticoes, id)) {
-    view.mostrar("Já existe uma competição com esse id");
   } else {
     competicaoController.cadastrarCompeticao(montarCompeticao({ ...dados, id }));
+    proximoID++;
     salvar();
     view.mostrarLista(competicaoController.vetCompeticoes);
   }
