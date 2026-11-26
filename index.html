@@ -1,79 +1,68 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trabalho Final Interdisciplinar 2026</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
 </head>
 <body>
-    <h1>Gerenciamento de Competições de Corridas</h1>
+      <!-- o visãoGeral.html é o proprio index.html brian, ele nn fica na pasta de páginas e tem nome index como default, tenha isso em mente quando for editar ou mudar algo-->
+        <header>
+        <nav id="navbar">
+            <p id="nav_logo"> Gestão de competidores</p>
 
-    <form id="form">
-        <form>
-            <legend>Atleta</legend>
-            <input id="atletaIdade" type="number" placeholder="idade">
-            <input id="atletaCpf" type="text" placeholder="cpf">
-            <input id="atletaNome" type="text" placeholder="nome">
-            <input id="atletaContato" type="text" placeholder="contato">
-            <select id="atletaModalidade">
-                <option value="Maratona">Maratona</option>
-                <option value="Trail Running">Trail Running</option>
-            </select>
-            <input id="atletaPeso" type="number" step="0.1" placeholder="peso">
-        </form>
+            <ul id="nav_list">
+                <li class="nav-item">
+                    <a href="visaoGeral.html">Visão Geral</a>
+                </li>
+                <li class="nav-item">
+                    <a href="atletas.html">Atletas</a>
+                </li>
+                <li class="nav-item">
+                    <a href="competicoes.html">Competições</a>
+                </li>
+                <li class="nav-item">
+                    <a href="relatorios.html">Relatórios</a>
+                </li>
 
-        <form>
-            <legend>Competição</legend>
-            <select id="tipo">
-                <option value="Maratona">Maratona</option>
-                <option value="TrailRunning">TrailRunning</option>
-            </select>
-            <input id="compHorario" type="text" placeholder="horario">
-            <input id="compData" type="text" placeholder="data">
-            <input id="compNome" type="text" placeholder="nome">
-            <input id="compLocal" type="text" placeholder="local">
-            <input id="compDistancia" type="number" step="0.001" placeholder="distancia">
-            <input id="compAltimetria" type="number" step="0.1" placeholder="altimetria">
-            <input id="compObjetivo" type="text" placeholder="objetivo">
-            <input id="compFechamentoVias" type="text" placeholder="fechamentoVias">
-            <input id="compPontosHidratacao" type="number" placeholder="pontosHidratacao">
-            <input id="compCheckPoint" type="text" placeholder="checkPoint">
-            <input id="compGrauDificuldade" type="text" placeholder="grauDificuldade">
-            <input id="compClimaEsperado" type="text" placeholder="climaEsperado">
-        </form>
+            </ul>
+        </nav>
+    </header>
 
-        <form>
-            <legend>Atleta — operações</legend>
-            <label for="atletaId">id do atleta (buscar / atualizar / remover):</label>
-            <input id="atletaId" type="number">
-            <div>
-                <button id="cadastrarAtleta" type="button">cadastrarAtleta</button>
-                <button id="buscarAtleta" type="button">buscarAtleta</button>
-                <button id="atualizarAtleta" type="button">atualizarAtleta</button>
-                <button id="removerAtleta" type="button">removerAtleta</button>
-                <button id="filtrarAtletas" type="button">filtrarPorModalidade</button>
-                <button id="listarAtletas" type="button">listarAtletas</button>
+    <main id="conteudo">
+        <div id="topo">
+            <h1>Visão Geral</h1>
+            <h2>Gerencie os atletas e as competições cadastradas.</h2>
+        </div>
+
+        <div id="dados">
+            <div id="atletasCadastrados">
+                <h3>Atletas Cadastrados</h3>
+                <p id="quantidadeAtletas">0</p>
             </div>
-        </form>
-
-        <form>
-            <legend>Competição — operações</legend>
-            <label for="compId">id da competição (buscar / atualizar / remover):</label>
-            <input id="compId" type="number">
-            <div>
-                <button id="cadastrarCompeticao" type="button">cadastrarCompeticao</button>
-                <button id="buscarCompeticao" type="button">buscarCompeticao</button>
-                <button id="atualizarCompeticao" type="button">atualizarCompeticao</button>
-                <button id="removerCompeticao" type="button">removerCompeticao</button>
-                <button id="filtrarCompeticoes" type="button">filtrarPorTipo</button>
-                <button id="listarCompeticoes" type="button">listarCompeticoes</button>
+            <div id="competicoesCadastradas">
+                <h3>Competições Cadastradas</h3>
+                <p id="quantidadeCompeticoes">0</p>
             </div>
-        </form>
-    </form>
+        </div>
 
-    <pre id="saida"></pre>
+        <div id="acessoRapido">
+            <div  class="card" href="atletas.html">
+                <h3>Cadastrar Atleta</h3>
+            </div>
+            <div class="card" href="competicoes.html">
+                <h3>Cadastrar Competição</h3>
+            </div>
+            <div class="card" href="inscricao.html">
+                <h3>Realizar Inscrição</h3>
+            </div>
+            <div class="card" href="relatorios.html">
+                <h3>Consultar Relatórios</h3>
+            </div>
+        </div>
 
-    <script type="module" src="js/script.js"></script>
+    </main>
+
+
 </body>
 </html>
