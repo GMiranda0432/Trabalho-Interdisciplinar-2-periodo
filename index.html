@@ -10,7 +10,7 @@
     <h1>Gerenciamento de Competições de Corridas</h1>
 
     <form id="form">
-        <fieldset>
+        <form>
             <legend>Atleta</legend>
             <input id="atletaIdade" type="number" placeholder="idade">
             <input id="atletaCpf" type="text" placeholder="cpf">
@@ -21,9 +21,9 @@
                 <option value="Trail Running">Trail Running</option>
             </select>
             <input id="atletaPeso" type="number" step="0.1" placeholder="peso">
-        </fieldset>
+        </form>
 
-        <fieldset>
+        <form>
             <legend>Competição</legend>
             <select id="tipo">
                 <option value="Maratona">Maratona</option>
@@ -41,9 +41,9 @@
             <input id="compCheckPoint" type="text" placeholder="checkPoint">
             <input id="compGrauDificuldade" type="text" placeholder="grauDificuldade">
             <input id="compClimaEsperado" type="text" placeholder="climaEsperado">
-        </fieldset>
+        </form>
 
-        <fieldset>
+        <form>
             <legend>Atleta — operações</legend>
             <label for="atletaId">id do atleta (buscar / atualizar / remover):</label>
             <input id="atletaId" type="number">
@@ -55,9 +55,9 @@
                 <button id="filtrarAtletas" type="button">filtrarPorModalidade</button>
                 <button id="listarAtletas" type="button">listarAtletas</button>
             </div>
-        </fieldset>
+        </form>
 
-        <fieldset>
+        <form>
             <legend>Competição — operações</legend>
             <label for="compId">id da competição (buscar / atualizar / remover):</label>
             <input id="compId" type="number">
@@ -69,7 +69,7 @@
                 <button id="filtrarCompeticoes" type="button">filtrarPorTipo</button>
                 <button id="listarCompeticoes" type="button">listarCompeticoes</button>
             </div>
-        </fieldset>
+        </form>
     </form>
 
     <pre id="saida"></pre>
