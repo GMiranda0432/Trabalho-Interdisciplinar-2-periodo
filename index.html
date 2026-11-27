@@ -17,14 +17,18 @@
     <div class="app">
         <!-- Barra lateral de navegação presente em todas as telas -->
         <aside class="sidebar">
-            <div class="logo">Gestão de Competições</div>
+            <div class="logo">
+                <div class="logo-text">Largada</div>
+                <span class="barra-amarela" aria-hidden="true"></span>
+            <p class="subtitulo">Gestão inteligente de corridas e atletas.</p>
+            </div>
             <nav>
                 <!-- Cada <li> é um link do menu; "ativo" marca a página atual -->
                 <ul class="menu">
-                    <li><a class="ativo" href="index.html">Visão Geral</a></li>
-                    <li><a href="pags/atletas.html">Atletas</a></li>
-                    <li><a href="pags/comps.html">Competições</a></li>
-                    <li><a href="pags/relatorio.html">Relatórios</a></li>
+                    <li><a class="ativo" href="index.html"><span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="1"></rect><rect x="14" y="4" width="6" height="6" rx="1"></rect><rect x="4" y="14" width="6" height="6" rx="1"></rect><rect x="14" y="14" width="6" height="6" rx="1"></rect></svg></span>Visão Geral</a></li>
+                    <li><a href="pags/atletas.html"><span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"></circle><path d="M3 20v-1a6 6 0 0 1 12 0v1M16 5.2a3 3 0 0 1 0 5.6M18 14a5 5 0 0 1 3 4.6V20"></path></svg></span>Atletas</a></li>
+                    <li><a href="pags/comps.html"><span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 4h8v4a4 4 0 0 1-8 0V4ZM8 6H5v2a4 4 0 0 0 4 4M16 6h3v2a4 4 0 0 1-4 4M12 12v5m-4 3h8m-7-3h6"></path></svg></span>Competições</a></li>
+                    <li><a href="pags/relatorio.html"><span class="nav-icone" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16M6 17v-5m6 5V7m6 10v-8"></path></svg></span>Relatórios</a></li>
                 </ul>
             </nav>
         </aside>
@@ -41,12 +45,28 @@
             <!-- Cartões com os totais; os <p> com id são preenchidos pelo script.js -->
             <section class="grade-dados">
                 <article class="cartao-dado">
-                    <h3>Atletas Cadastrados</h3>
+                    <div class="cartao-dado-cabecalho">
+                        <h3>Atletas Cadastrados</h3>
+                        <span class="icone-dado" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="9" cy="8" r="3"></circle>
+                                <path d="M3 20v-1a6 6 0 0 1 12 0v1"></path>
+                                <path d="M16 5.2a3 3 0 0 1 0 5.6M18 14a5 5 0 0 1 3 4.6V20"></path>
+                            </svg>
+                        </span>
+                    </div>
                     <!-- O JS escreve aqui a quantidade de atletas -->
                     <p class="valor" id="quantidadeAtletas">0</p>
                 </article>
                 <article class="cartao-dado">
-                    <h3>Competições Cadastradas</h3>
+                    <div class="cartao-dado-cabecalho">
+                        <h3>Competições Cadastradas</h3>
+                        <span class="icone-dado" aria-hidden="true">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M8 4h8v4a4 4 0 0 1-8 0V4ZM8 6H5v2a4 4 0 0 0 4 4M16 6h3v2a4 4 0 0 1-4 4M12 12v5m-4 3h8m-7-3h6"></path>
+                            </svg>
+                        </span>
+                    </div>
                     <!-- O JS escreve aqui a quantidade de competições -->
                     <p class="valor" id="quantidadeCompeticoes">0</p>
                 </article>
@@ -56,19 +76,36 @@
             <!-- Atalhos: cada cartão é um link direto para uma tela de cadastro/relatório -->
             <section class="grade-acesso">
                 <a class="cartao-acesso" href="pags/cadastroAtleta.html">
-                    <span class="icone">+</span>
+                    <span class="icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="10" cy="8" r="3"></circle>
+                            <path d="M4 20v-1a6 6 0 0 1 12 0v1M19 8v6m-3-3h6"></path>
+                        </svg>
+                    </span>
                     <span>Cadastrar Atleta</span>
                 </a>
                 <a class="cartao-acesso" href="pags/cadastroComp.html">
-                    <span class="icone">+</span>
+                    <span class="icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 4h8v4a4 4 0 0 1-8 0V4ZM8 6H5v2a4 4 0 0 0 4 4M16 6h3v2a4 4 0 0 1-4 4M12 12v5m-4 3h8m-7-3h6"></path>
+                        </svg>
+                    </span>
                     <span>Cadastrar Competição</span>
                 </a>
                 <a class="cartao-acesso" href="pags/inscricao.html">
-                    <span class="icone">+</span>
+                    <span class="icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M8 4H6a2 2 0 0 0-2 2v14h16V6a2 2 0 0 0-2-2h-2M9 4h6v4H9zM8 13h8m-8 4h5"></path>
+                        </svg>
+                    </span>
                     <span>Realizar Inscrição</span>
                 </a>
                 <a class="cartao-acesso" href="pags/relatorio.html">
-                    <span class="icone">=</span>
+                    <span class="icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M4 20h16M6 17v-5m6 5V7m6 10v-8"></path>
+                        </svg>
+                    </span>
                     <span>Consultar Relatórios</span>
                 </a>
             </section>

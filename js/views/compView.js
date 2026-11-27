@@ -136,9 +136,12 @@ class CompView extends View {
   }
 
   mostrarResumoCompeticao(comp, inscritos) {
-    // Mostra a modalidade da competição (ou "-" se nenhuma) e a quantidade de inscritos
+    // Mostra os dados da competição (ou "-" se nenhuma) e a quantidade de inscritos
     this.escrever("#relModalidade", comp ? comp.modalidade : "-");
     this.escrever("#relInscritos", inscritos);
+    this.escrever("#relData", comp ? comp.data : "-");
+    this.escrever("#relDistancia", comp ? `${comp.distancia} km` : "-");
+    this.escrever("#relLocal", comp ? comp.local : "-");
   }
 
   mostrarRelatorioGeral(itens, totais) {

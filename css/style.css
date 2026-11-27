@@ -5,6 +5,8 @@
 
 :root {
     /* Cores */
+    --amarelo: #f2b438;
+    --preto: #000000;
     --verde-escuro: #16382c;
     --verde: #237a57;
     --verde-hover: #1c6246;
@@ -100,6 +102,23 @@ button {
     color: var(--branco);
 }
 
+.sidebar .logo-text {
+    font-size: 25px;
+    text-transform: uppercase;
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: var(--preto);
+    color: var(--branco);
+}
+
+.sidebar .barra-amarela {
+  display: block;
+  width: 60px;
+  height: 6px;
+  margin: 5px 0;
+  background-color: var(--amarelo);
+  border-radius: 999px;
+}
+
 .menu li {
     margin-bottom: 8px;
 }
@@ -107,12 +126,30 @@ button {
 .menu a {
     display: flex;
     align-items: center;
+    gap: 12px;
     height: 44px;
     padding: 0 12px;
     border-radius: var(--raio);
     font-size: 16px;
     color: var(--branco);
     transition: background .15s ease, color .15s ease;
+}
+
+.menu .nav-icone {
+    display: flex;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+}
+
+.menu .nav-icone svg {
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .menu a:hover {
@@ -243,10 +280,42 @@ button {
     padding: 25px;
 }
 
+.cartao-dado-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.cartao-dado-cabecalho h3 {
+    margin: 0;
+}
+
 .cartao-dado h3 {
     font-size: 18px;
     font-weight: 600;
     color: var(--cinza-label);
+}
+
+.icone-dado {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: var(--raio);
+    background: var(--verde-fundo);
+    color: var(--verde);
+}
+
+.icone-dado svg {
+    width: 26px;
+    height: 26px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .cartao-dado .valor {
@@ -300,6 +369,16 @@ button {
     justify-content: center;
     font-size: 26px;
     font-weight: 700;
+}
+
+.cartao-acesso .icone svg {
+    width: 28px;
+    height: 28px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
 }
 
 .cartao-acesso span {
