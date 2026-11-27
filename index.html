@@ -4,65 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visão Geral</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-      <!-- o visãoGeral.html é o proprio index.html brian, ele nn fica na pasta de páginas e tem nome index como default, tenha isso em mente quando for editar ou mudar algo-->
-        <header>
-        <nav id="navbar">
-            <p id="nav_logo"> Gestão de competidores</p>
+    <!-- O index.html é a própria tela de Visão Geral (não fica na pasta pags) -->
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Gestão de Competições</div>
+            <nav>
+                <ul class="menu">
+                    <li><a class="ativo" href="index.html">Visão Geral</a></li>
+                    <li><a href="pags/atletas.html">Atletas</a></li>
+                    <li><a href="pags/comps.html">Competições</a></li>
+                    <li><a href="pags/relatorio.html">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="index.html">Visão Geral</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./pags/atletas.html">Atletas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./pags/comps.html">Competições</a>
-                </li>
-                <li class="nav-item">
-                    <a href="./pags/relatorio.html">Relatórios</a>
-                </li>
+        <main class="conteudo">
+            <header class="cabecalho">
+                <div>
+                    <h1>Visão Geral</h1>
+                    <p class="subtitulo">Gerencie os atletas e as competições cadastradas.</p>
+                </div>
+            </header>
 
-            </ul>
-        </nav>
-    </header>
+            <section class="grade-dados">
+                <article class="cartao-dado">
+                    <h3>Atletas Cadastrados</h3>
+                    <p class="valor" id="quantidadeAtletas">0</p>
+                </article>
+                <article class="cartao-dado">
+                    <h3>Competições Cadastradas</h3>
+                    <p class="valor" id="quantidadeCompeticoes">0</p>
+                </article>
+            </section>
 
-    <main id="conteudo">
-        <div id="topo">
-            <h1>Visão Geral</h1>
-            <h2>Gerencie os atletas e as competições cadastradas.</h2>
-        </div>
+            <h2 class="titulo-secao">Acesso Rápido</h2>
+            <section class="grade-acesso">
+                <a class="cartao-acesso" href="pags/cadastroAtleta.html">
+                    <span class="icone">+</span>
+                    <span>Cadastrar Atleta</span>
+                </a>
+                <a class="cartao-acesso" href="pags/cadastroComp.html">
+                    <span class="icone">+</span>
+                    <span>Cadastrar Competição</span>
+                </a>
+                <a class="cartao-acesso" href="pags/inscricao.html">
+                    <span class="icone">+</span>
+                    <span>Realizar Inscrição</span>
+                </a>
+                <a class="cartao-acesso" href="pags/relatorio.html">
+                    <span class="icone">=</span>
+                    <span>Consultar Relatórios</span>
+                </a>
+            </section>
+        </main>
+    </div>
 
-        <div id="dados">
-            <div id="atletasCadastrados">
-                <h3>Atletas Cadastrados</h3>
-                <p id="quantidadeAtletas">0</p>
-            </div>
-            <div id="competicoesCadastradas">
-                <h3>Competições Cadastradas</h3>
-                <p id="quantidadeCompeticoes">0</p>
-            </div>
-        </div>
-
-        <div id="acessoRapido">
-            <div  class="card" href="./pags/atletas.html">
-                <h3>Cadastrar Atleta</h3>
-            </div>
-            <div class="card" href="./pags/comps.html">
-                <h3>Cadastrar Competição</h3>
-            </div>
-            <div class="card" href="./pags/inscricao.html">
-                <h3>Realizar Inscrição</h3>
-            </div>
-            <div class="card" href="./pags/relatorio.html">
-                <h3>Consultar Relatórios</h3>
-            </div>
-        </div>
-
-    </main>
-
-
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>

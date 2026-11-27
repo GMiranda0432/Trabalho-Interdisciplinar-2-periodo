@@ -3,31 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Atleta</title>
+    <title>Novo Atleta</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
-        <header>
-        <nav id="navbar">
-            <p id="nav_logo"> Gestão de competidores</p>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Gestão de Competições</div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="../index.html">Visão Geral</a></li>
+                    <li><a class="ativo" href="atletas.html">Atletas</a></li>
+                    <li><a href="comps.html">Competições</a></li>
+                    <li><a href="relatorio.html">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="../index.html">Visão Geral</a>
-                </li>
-                <li class="nav-item">
-                    <a href="atletas.html">Atletas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="comps.html">Competições</a>
-                </li>
-                <li class="nav-item">
-                    <a href="relatorio.html">Relatórios</a>
-                </li>
+        <main class="conteudo">
+            <header class="cabecalho">
+                <div>
+                    <h1>Novo Atleta</h1>
+                    <p class="subtitulo">Preencha os dados para cadastrar um atleta</p>
+                </div>
+            </header>
 
-            </ul>
-        </nav>
-    </header>
+            <form id="formAtleta" novalidate>
+                <div class="form-caixa">
+                    <h2>Dados do atleta</h2>
+                    <div class="form-grade">
+                        <div class="campo-grupo largura-total">
+                            <label for="atletaNome">Nome Completo <span class="obrig">*</span></label>
+                            <input class="campo" id="atletaNome" type="text" placeholder="Informe o nome completo">
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="atletaCpf">CPF <span class="obrig">*</span></label>
+                            <input class="campo" id="atletaCpf" type="text" placeholder="000.000.000-00">
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="atletaNascimento">Data de Nascimento <span class="obrig">*</span></label>
+                            <input class="campo" id="atletaNascimento" type="date">
+                        </div>
+                        <div class="campo-grupo largura-total">
+                            <label for="atletaContato">Contato <span class="obrig">*</span></label>
+                            <input class="campo" id="atletaContato" type="text" placeholder="Informe o contato">
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="atletaModalidade">Modalidade <span class="obrig">*</span></label>
+                            <select class="campo" id="atletaModalidade">
+                                <option value="">Selecione a modalidade</option>
+                                <option value="Maratona">Maratona</option>
+                                <option value="Trail Running">Trail Running</option>
+                            </select>
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="atletaPeso">Peso (kg) <span class="obrig">*</span></label>
+                            <input class="campo" id="atletaPeso" type="number" step="0.1" min="0" placeholder="Informe o peso">
+                        </div>
+                    </div>
+                    <p class="nota-obrig"><span class="obrig">*</span> Campos Obrigatórios</p>
+                </div>
+                <div class="form-acoes">
+                    <a class="btn btn-secundario" href="atletas.html">Cancelar</a>
+                    <button class="btn btn-primario" type="submit">Cadastrar Atleta</button>
+                </div>
+            </form>
+        </main>
+    </div>
 
+    <script type="module" src="../js/pags/cadastroAtleta.js"></script>
 </body>
 </html>

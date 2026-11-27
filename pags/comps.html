@@ -4,30 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Competições</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
-        <header>
-        <nav id="navbar">
-            <p id="nav_logo"> Gestão de competidores</p>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Gestão de Competições</div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="../index.html">Visão Geral</a></li>
+                    <li><a href="atletas.html">Atletas</a></li>
+                    <li><a class="ativo" href="comps.html">Competições</a></li>
+                    <li><a href="relatorio.html">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="../index.html">Visão Geral</a>
-                </li>
-                <li class="nav-item">
-                    <a href="atletas.html">Atletas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="comps.html">Competições</a>
-                </li>
-                <li class="nav-item">
-                    <a href="relatorio.html">Relatórios</a>
-                </li>
+        <main class="conteudo">
+            <header class="cabecalho">
+                <div>
+                    <h1>Competições</h1>
+                    <p class="subtitulo">Gerencie as competições cadastradas no sistema</p>
+                </div>
+                <div class="cabecalho-acoes">
+                    <a class="btn btn-secundario" href="inscricao.html">+ Nova inscrição</a>
+                    <a class="btn btn-primario" href="cadastroComp.html">+ Nova competição</a>
+                </div>
+            </header>
 
-            </ul>
-        </nav>
-    </header>
+            <div class="barra">
+                <input class="campo busca" id="buscaId" type="text" placeholder="Buscar competição por ID">
+                <select class="campo filtro" id="filtroTipo">
+                    <option value="">Todas as Modalidades</option>
+                    <option value="Maratona">Maratona</option>
+                    <option value="TrailRunning">Trail Running</option>
+                </select>
+            </div>
 
+            <div class="tabela-caixa">
+                <div class="tabela-rolagem">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>Local</th>
+                                <th>Data</th>
+                                <th>Modalidade</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaCompeticoes"></tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="info-tabela" id="resumoCompeticoes">Exibindo 0 de 0 competições</p>
+        </main>
+    </div>
+
+    <!-- Modal de exclusão de competição (integrado à lista, não é página separada) -->
+    <div class="modal-fundo" id="modalCompeticao">
+        <div class="modal">
+            <h2>Excluir Competição</h2>
+            <p class="mensagem" id="mensagemExclusao">Deseja realmente excluir esta competição?</p>
+            <p class="aviso">Esta ação não poderá ser desfeita.</p>
+            <div class="modal-acoes">
+                <button class="btn cancelar" id="cancelarExclusao" type="button">Cancelar</button>
+                <button class="btn btn-perigo" id="confirmarExclusao" type="button">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/pags/comps.js"></script>
 </body>
 </html>

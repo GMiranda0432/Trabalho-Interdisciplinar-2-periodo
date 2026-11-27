@@ -4,51 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nova Inscrição</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
-        <header>
-        <nav id="navbar">
-            <p id="nav_logo"> Gestão de competidores</p>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Gestão de Competições</div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="../index.html">Visão Geral</a></li>
+                    <li><a href="atletas.html">Atletas</a></li>
+                    <li><a class="ativo" href="comps.html">Competições</a></li>
+                    <li><a href="relatorio.html">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="../index.html">Visão Geral</a>
-                </li>
-                <li class="nav-item">
-                    <a href="atletas.html">Atletas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="comps.html">Competições</a>
-                </li>
-                <li class="nav-item">
-                    <a href="relatorio.html">Relatórios</a>
-                </li>
+        <main class="conteudo">
+            <header class="cabecalho">
+                <div>
+                    <h1>Nova Inscrição</h1>
+                    <p class="subtitulo">Associe atletas a uma competição cadastrada</p>
+                </div>
+            </header>
 
-            </ul>
-        </nav>
-    </header>
-
-    <main id="conteudo">
-        <div id="topo">
-            <h1>Nova Inscrição</h1>
-            <h2>Associe atletas a uma competição cadastrada </h2>
-        </div>
-
-        <div id="formulario">
-            <form action="">
-                <label for="atleta">Competição:</label>
-                <select name="competicao" id="competicao">
-                    <option value="">Selecione uma competição</option>
-                </select>
-
-                <label for="competicao">Atleta:</label>
-                <select name="atleta" id="atleta">
-                    <option value="">Selecione um atleta</option>
-                </select>
-
-                <button type="submit">Realizar Inscrição</button>
+            <form id="formInscricao" novalidate>
+                <div class="form-caixa">
+                    <h2>Dados da inscrição</h2>
+                    <div class="form-grade uma-coluna">
+                        <div class="campo-grupo">
+                            <label for="competicao">Competição <span class="obrig">*</span></label>
+                            <select class="campo" id="competicao">
+                                <option value="">Selecione a competição</option>
+                            </select>
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="atleta">Atletas <span class="obrig">*</span></label>
+                            <select class="campo" id="atleta">
+                                <option value="">Selecione o(s) atleta(s)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <p class="nota-obrig"><span class="obrig">*</span> Campos Obrigatórios</p>
+                </div>
+                <div class="form-acoes">
+                    <a class="btn btn-secundario" href="comps.html">Cancelar</a>
+                    <button class="btn btn-primario" type="submit">Realizar Inscrição</button>
+                </div>
             </form>
-        </div>
+        </main>
+    </div>
+
+    <script type="module" src="../js/pags/inscricao.js"></script>
 </body>
 </html>

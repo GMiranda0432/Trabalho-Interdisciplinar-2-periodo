@@ -4,30 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atletas</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
-        <header>
-        <nav id="navbar">
-            <p id="nav_logo"> Gestão de competidores</p>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Gestão de Competições</div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="../index.html">Visão Geral</a></li>
+                    <li><a class="ativo" href="atletas.html">Atletas</a></li>
+                    <li><a href="comps.html">Competições</a></li>
+                    <li><a href="relatorio.html">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="../index.html">Visão Geral</a>
-                </li>
-                <li class="nav-item">
-                    <a href="atletas.html">Atletas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="comps.html">Competições</a>
-                </li>
-                <li class="nav-item">
-                    <a href="relatorio.html">Relatórios</a>
-                </li>
+        <main class="conteudo">
+            <header class="cabecalho">
+                <div>
+                    <h1>Atletas</h1>
+                    <p class="subtitulo">Gerencie os atletas cadastrados no sistema</p>
+                </div>
+                <a class="btn btn-primario" href="cadastroAtleta.html">+ Novo Atleta</a>
+            </header>
 
-            </ul>
-        </nav>
-    </header>
+            <div class="barra">
+                <input class="campo busca" id="buscaId" type="text" placeholder="Buscar atleta por ID">
+                <select class="campo filtro" id="filtroModalidade">
+                    <option value="">Todas as Modalidades</option>
+                    <option value="Maratona">Maratona</option>
+                    <option value="Trail Running">Trail Running</option>
+                </select>
+            </div>
 
+            <div class="tabela-caixa">
+                <div class="tabela-rolagem">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Idade</th>
+                                <th>Modalidade</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="listaAtletas"></tbody>
+                    </table>
+                </div>
+            </div>
+            <p class="info-tabela" id="resumoAtletas">Exibindo 0 de 0 atletas</p>
+        </main>
+    </div>
+
+    <!-- Modal de exclusão de atleta (integrado à lista, não é página separada) -->
+    <div class="modal-fundo" id="modalAtleta">
+        <div class="modal">
+            <h2>Excluir Atleta</h2>
+            <p class="mensagem" id="mensagemExclusao">Deseja realmente excluir este atleta?</p>
+            <p class="aviso">Esta ação não poderá ser desfeita.</p>
+            <div class="modal-acoes">
+                <button class="btn cancelar" id="cancelarExclusao" type="button">Cancelar</button>
+                <button class="btn btn-perigo" id="confirmarExclusao" type="button">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="../js/pags/atletas.js"></script>
 </body>
 </html>

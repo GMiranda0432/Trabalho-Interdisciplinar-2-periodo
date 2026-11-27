@@ -3,31 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro de Competição</title>
+    <title>Nova Competição</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
-        <header>
-        <nav id="navbar">
-            <p id="nav_logo"> Gestão de competidores</p>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Gestão de Competições</div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="../index.html">Visão Geral</a></li>
+                    <li><a href="atletas.html">Atletas</a></li>
+                    <li><a class="ativo" href="comps.html">Competições</a></li>
+                    <li><a href="relatorio.html">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="../index.html">Visão Geral</a>
-                </li>
-                <li class="nav-item">
-                    <a href="atletas.html">Atletas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="comps.html">Competições</a>
-                </li>
-                <li class="nav-item">
-                    <a href="relatorio.html">Relatórios</a>
-                </li>
+        <main class="conteudo">
+            <header class="cabecalho">
+                <div>
+                    <h1>Nova Competição</h1>
+                    <p class="subtitulo">Preencha os dados para criar uma competição</p>
+                </div>
+            </header>
 
-            </ul>
-        </nav>
-    </header>
+            <form id="formCompeticao" novalidate>
+                <div class="form-caixa">
+                    <h2>Dados da competição</h2>
+                    <div class="form-grade">
+                        <div class="campo-grupo">
+                            <label for="compNome">Nome da competição <span class="obrig">*</span></label>
+                            <input class="campo" id="compNome" type="text" placeholder="Insira o nome da competição">
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="compData">Data <span class="obrig">*</span></label>
+                            <input class="campo" id="compData" type="date">
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="compLocal">Local <span class="obrig">*</span></label>
+                            <input class="campo" id="compLocal" type="text" placeholder="Insira o nome do local">
+                        </div>
+                        <div class="campo-grupo">
+                            <span class="rotulo">Horários da competição</span>
+                            <div class="horarios">
+                                <div class="campo-grupo">
+                                    <label for="compHorario">Início</label>
+                                    <input class="campo" id="compHorario" type="time">
+                                </div>
+                                <div class="campo-grupo">
+                                    <label for="compHorarioFim">Fim</label>
+                                    <input class="campo" id="compHorarioFim" type="time">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="compDistancia">Distância <span class="obrig">*</span></label>
+                            <div class="campo-medida">
+                                <input class="campo" id="compDistancia" type="number" step="0.01" min="0" placeholder="Insira a distância">
+                                <span class="unidade">km</span>
+                            </div>
+                        </div>
+                        <div class="campo-grupo">
+                            <label for="tipo">Tipo de corrida <span class="obrig">*</span></label>
+                            <select class="campo" id="tipo">
+                                <option value="">Escolha uma opção</option>
+                                <option value="Maratona">Maratona</option>
+                                <option value="TrailRunning">Trail Running</option>
+                            </select>
+                        </div>
+                        <div class="campo-grupo largura-total">
+                            <label for="compAltimetria">Altimetria</label>
+                            <div class="campo-medida">
+                                <input class="campo" id="compAltimetria" type="number" step="0.01" min="0" placeholder="Insira a altimetria">
+                                <span class="unidade">m</span>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="campos-maratona campos-tipo">
+                        <h2>Dados da Maratona</h2>
+                        <div class="form-grade">
+                            <div class="campo-grupo">
+                                <label for="compObjetivo">Objetivo</label>
+                                <input class="campo" id="compObjetivo" type="text" placeholder="Ex.: Percurso urbano plano">
+                            </div>
+                            <div class="campo-grupo">
+                                <label for="compFechamentoVias">Fechamento das vias</label>
+                                <input class="campo" id="compFechamentoVias" type="text" placeholder="Ex.: 06:00 as 12:00">
+                            </div>
+                            <div class="campo-grupo">
+                                <label for="compPontosHidratacao">Pontos de hidratação</label>
+                                <input class="campo" id="compPontosHidratacao" type="number" min="0" step="1" placeholder="Quantidade de pontos">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="campos-trail campos-tipo">
+                        <h2>Dados do Trail Running</h2>
+                        <div class="form-grade">
+                            <div class="campo-grupo">
+                                <label for="compCheckPoint">Check point</label>
+                                <input class="campo" id="compCheckPoint" type="text" placeholder="Ex.: CP1 - Mirante">
+                            </div>
+                            <div class="campo-grupo">
+                                <label for="compGrauDificuldade">Grau de dificuldade</label>
+                                <input class="campo" id="compGrauDificuldade" type="text" placeholder="Ex.: Difícil">
+                            </div>
+                            <div class="campo-grupo">
+                                <label for="compClimaEsperado">Clima esperado</label>
+                                <input class="campo" id="compClimaEsperado" type="text" placeholder="Ex.: Sol com nuvens">
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="nota-obrig"><span class="obrig">*</span> Campos Obrigatórios</p>
+                </div>
+                <div class="form-acoes">
+                    <a class="btn btn-secundario" href="comps.html">Cancelar</a>
+                    <button class="btn btn-primario" type="submit">Criar Competição</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script type="module" src="../js/pags/cadastroComp.js"></script>
 </body>
 </html>

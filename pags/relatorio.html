@@ -4,30 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Relatórios</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    
-        <header>
-        <nav id="navbar">
-            <p id="nav_logo"> Gestão de competidores</p>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="logo">Gestão de Competições</div>
+            <nav>
+                <ul class="menu">
+                    <li><a href="../index.html">Visão Geral</a></li>
+                    <li><a href="atletas.html">Atletas</a></li>
+                    <li><a href="comps.html">Competições</a></li>
+                    <li><a class="ativo" href="relatorio.html">Relatórios</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-            <ul id="nav_list">
-                <li class="nav-item">
-                    <a href="../index.html">Visão Geral</a>
-                </li>
-                <li class="nav-item">
-                    <a href="atletas.html">Atletas</a>
-                </li>
-                <li class="nav-item">
-                    <a href="comps.html">Competições</a>
-                </li>
-                <li class="nav-item">
-                    <a href="relatorio.html">Relatórios</a>
-                </li>
+        <main class="conteudo">
+            <header class="cabecalho">
+                <div>
+                    <h1>Relatórios</h1>
+                    <p class="subtitulo">Consulte os dados das competições e seus participantes.</p>
+                </div>
+            </header>
 
-            </ul>
-        </nav>
-    </header>
+            <div class="abas">
+                <button class="aba ativa" id="abaCompeticao" type="button">Por competição</button>
+                <button class="aba" id="abaGeral" type="button">Relatório Geral</button>
+            </div>
 
+            <section id="painelCompeticao">
+                <div class="campo-grupo">
+                    <label for="relCompeticao">Selecione a competição</label>
+                    <select class="campo" id="relCompeticao">
+                        <option value="">Selecione a competição</option>
+                    </select>
+                </div>
+
+                <div class="destaque" style="margin-top: 40px;">
+                    <article class="cartao-dado">
+                        <span class="rotulo">Modalidade</span>
+                        <p class="valor" id="relModalidade">-</p>
+                    </article>
+                    <article class="cartao-dado">
+                        <span class="rotulo">Atletas Inscritos</span>
+                        <p class="valor" id="relInscritos">0</p>
+                    </article>
+                </div>
+
+                <h2 class="titulo-secao">Participantes</h2>
+                <div class="tabela-caixa">
+                    <div class="tabela-rolagem">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nome</th>
+                                    <th>Idade</th>
+                                    <th>Modalidade</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaParticipantes"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="painelGeral" class="oculto">
+                <div class="grade-tres">
+                    <article class="cartao-dado">
+                        <h3>Total de competições</h3>
+                        <p class="valor" id="geralCompeticoes">0</p>
+                    </article>
+                    <article class="cartao-dado">
+                        <h3>Atletas Cadastrados</h3>
+                        <p class="valor" id="geralAtletas">0</p>
+                    </article>
+                    <article class="cartao-dado">
+                        <h3>Total de Inscrições</h3>
+                        <p class="valor" id="geralInscricoes">0</p>
+                    </article>
+                </div>
+
+                <h2 class="titulo-secao">Competições Cadastradas</h2>
+                <div class="tabela-caixa">
+                    <div class="tabela-rolagem">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Competição</th>
+                                    <th>Modalidade</th>
+                                    <th>Inscritos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabelaGeral"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="../js/pags/relatorio.js"></script>
 </body>
 </html>
