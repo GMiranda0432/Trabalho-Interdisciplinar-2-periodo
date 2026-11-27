@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<!-- Página de Edição de Competição. Mesmo formulário da Nova Competição,
+     mas o <input id="compId" type="hidden"> guarda o id vindo da URL para
+     o JS saber QUAL competição está sendo atualizada -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +11,7 @@
 </head>
 <body>
     <div class="app">
+        <!-- Menu lateral padrão; "ativo" marca Competições -->
         <aside class="sidebar">
             <div class="logo">Gestão de Competições</div>
             <nav>
@@ -28,10 +32,13 @@
                 </div>
             </header>
 
+            <!-- id="formCompeticao" é o que o editComp.js procura para escutar o submit.
+                 novalidate desliga a validação nativa do navegador (o JS valida do jeito dele) -->
             <form id="formCompeticao" novalidate>
                 <div class="form-caixa">
                     <h2>Dados da competição</h2>
                     <div class="form-grade">
+                        <!-- input escondido: guarda o id da competição, o usuário não vê nem digita -->
                         <input id="compId" type="hidden">
                         <div class="campo-grupo">
                             <label for="compNome">Nome da competição <span class="obrig">*</span></label>
@@ -47,6 +54,7 @@
                         </div>
                         <div class="campo-grupo">
                             <span class="rotulo">Horários da competição</span>
+                            <!-- Dois campos de hora; o JS valida que o "Fim" seja maior que o "Início" -->
                             <div class="horarios">
                                 <div class="campo-grupo">
                                     <label for="compHorario">Início</label>
@@ -60,6 +68,7 @@
                         </div>
                         <div class="campo-grupo">
                             <label for="compDistancia">Distância <span class="obrig">*</span></label>
+                            <!-- campo-medida junta o input + a "unidade" (km) ao lado -->
                             <div class="campo-medida">
                                 <input class="campo" id="compDistancia" type="number" step="0.01" min="0" placeholder="Insira a distância">
                                 <span class="unidade">km</span>
@@ -67,6 +76,8 @@
                         </div>
                         <div class="campo-grupo">
                             <label for="tipo">Tipo de corrida <span class="obrig">*</span></label>
+                            <!-- Trocar este select é o que o JS observa para mostrar/esconder os blocos abaixo.
+                                 Ao trocar o tipo, os campos específicos da modalidade são atualizados. -->
                             <select class="campo" id="tipo">
                                 <option value="">Escolha uma opção</option>
                                 <option value="Maratona">Maratona</option>
@@ -75,6 +86,7 @@
                         </div>
                         <div class="campo-grupo largura-total">
                             <label for="compAltimetria">Altimetria</label>
+                            <!-- largura-total faz o campo ocupar a linha toda (grid) -->
                             <div class="campo-medida">
                                 <input class="campo" id="compAltimetria" type="number" step="0.01" min="0" placeholder="Insira a altimetria">
                                 <span class="unidade">m</span>
@@ -82,6 +94,8 @@
                         </div>
                     </div>
 
+                    <!-- Bloco exclusivo de Maratona. A classe campos-tipo deixa ele escondido
+                         por padrão; o JS adiciona/remove uma classe para exibir -->
                     <div class="campos-maratona campos-tipo">
                         <h2>Dados da Maratona</h2>
                         <div class="form-grade">
@@ -100,6 +114,7 @@
                         </div>
                     </div>
 
+                    <!-- Bloco exclusivo de Trail Running; mesma ideia: escondido até o tipo ser escolhido -->
                     <div class="campos-trail campos-tipo">
                         <h2>Dados do Trail Running</h2>
                         <div class="form-grade">
@@ -121,13 +136,16 @@
                     <p class="nota-obrig"><span class="obrig">*</span> Campos Obrigatórios</p>
                 </div>
                 <div class="form-acoes">
+                    <!-- Cancelar é um link (não envia o form); Voltar para a lista -->
                     <a class="btn btn-secundario" href="comps.html">Cancelar</a>
+                    <!-- type="submit" dispara o evento submit que o editComp.js escuta -->
                     <button class="btn btn-primario" type="submit">Confirmar Alterações</button>
                 </div>
             </form>
         </main>
     </div>
 
+    <!-- type="module" habilita import/export (ES Modules) e roda só este script da página -->
     <script type="module" src="../js/pags/editComp.js"></script>
 </body>
 </html>

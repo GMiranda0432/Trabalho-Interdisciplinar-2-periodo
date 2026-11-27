@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Página de listagem de Competições (tabela + busca/filtro + modal de exclusão) -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +9,7 @@
 </head>
 <body>
     <div class="app">
+        <!-- Menu lateral padrão; "ativo" marca Competições -->
         <aside class="sidebar">
             <div class="logo">Gestão de Competições</div>
             <nav>
@@ -21,6 +23,7 @@
         </aside>
 
         <main class="conteudo">
+            <!-- Cabeçalho com dois botões: nova inscrição e nova competição -->
             <header class="cabecalho">
                 <div>
                     <h1>Competições</h1>
@@ -32,9 +35,11 @@
                 </div>
             </header>
 
+            <!-- Busca por ID + filtro por tipo (o JS escuta input e change) -->
             <div class="barra">
                 <input class="campo busca" id="buscaId" type="text" placeholder="Buscar competição por ID">
                 <select class="campo filtro" id="filtroTipo">
+                    <!-- OBS: o value "TrailRunning" casa com o nome da classe no controller -->
                     <option value="">Todas as Modalidades</option>
                     <option value="Maratona">Maratona</option>
                     <option value="TrailRunning">Trail Running</option>
@@ -54,6 +59,7 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
+                        <!-- Preenchido pelo JS: uma linha por competição -->
                         <tbody id="listaCompeticoes"></tbody>
                     </table>
                 </div>
@@ -66,6 +72,7 @@
     <div class="modal-fundo" id="modalCompeticao">
         <div class="modal">
             <h2>Excluir Competição</h2>
+            <!-- O JS troca este texto pelo nome da competição escolhida -->
             <p class="mensagem" id="mensagemExclusao">Deseja realmente excluir esta competição?</p>
             <p class="aviso">Esta ação não poderá ser desfeita.</p>
             <div class="modal-acoes">

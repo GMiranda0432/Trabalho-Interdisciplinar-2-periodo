@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Página de Nova Inscrição: escolhe uma competição e depois marca os atletas (em lote).
+     A seção de atletas começa desativada e só libera após escolher a competição -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +10,7 @@
 </head>
 <body>
     <div class="app">
+        <!-- Menu lateral padrão; "ativo" aponta para a área de Competições -->
         <aside class="sidebar">
             <div class="logo">Gestão de Competições</div>
             <nav>
@@ -34,22 +37,50 @@
                     <div class="form-grade uma-coluna">
                         <div class="campo-grupo">
                             <label for="competicao">Competição <span class="obrig">*</span></label>
+                            <!-- Este <select> é preenchido pelo JS com as competições cadastradas.
+                                 Trocar a opção dispara o carregamento dos atletas da modalidade dela -->
                             <select class="campo" id="competicao">
                                 <option value="">Selecione a competição</option>
-                            </select>
-                        </div>
-                        <div class="campo-grupo">
-                            <label for="atleta">Atletas <span class="obrig">*</span></label>
-                            <select class="campo" id="atleta">
-                                <option value="">Selecione o(s) atleta(s)</option>
                             </select>
                         </div>
                     </div>
                     <p class="nota-obrig"><span class="obrig">*</span> Campos Obrigatórios</p>
                 </div>
+
+                <!-- Seção de atletas: fica desativada até o usuário escolher uma competição.
+                     A lista exibe apenas os atletas da modalidade da competição selecionada. -->
+                <div class="form-caixa secao-atletas">
+                    <h2>Atletas disponíveis</h2>
+                    <div class="tabela-caixa">
+                        <div class="tabela-rolagem">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <!-- Coluna estreita só para as checkboxes de seleção -->
+                                        <th class="col-check"></th>
+                                        <th>ID</th>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>Idade</th>
+                                        <th>E-mail</th>
+                                        <th>Modalidade</th>
+                                        <th>Peso</th>
+                                    </tr>
+                                </thead>
+                                <!-- Aqui o JS injeta uma linha por atleta, com checkbox à esquerda -->
+                                <tbody id="listaAtletasInscricao">
+                                    <tr><td class="tabela-vazia" colspan="8">Selecione uma competição para ver os atletas disponíveis.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="form-acoes">
                     <a class="btn btn-secundario" href="comps.html">Cancelar</a>
-                    <button class="btn btn-primario" type="submit">Realizar Inscrição</button>
+                    <!-- Começa "disabled"; o JS habilita só depois de escolher a competição.
+                         O submit faz a inscrição em lote dos marcados -->
+                    <button class="btn btn-primario" id="btnInscrever" type="submit" disabled>Realizar Inscrição</button>
                 </div>
             </form>
         </main>

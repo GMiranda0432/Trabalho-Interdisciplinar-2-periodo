@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Página de Nova Competição. O formulário tem campos comuns + dois blocos que aparecem
+     conforme o "Tipo de corrida": um para Maratona e outro para Trail Running -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +10,7 @@
 </head>
 <body>
     <div class="app">
+        <!-- Menu lateral padrão; "ativo" marca Competições -->
         <aside class="sidebar">
             <div class="logo">Gestão de Competições</div>
             <nav>
@@ -46,6 +49,7 @@
                         </div>
                         <div class="campo-grupo">
                             <span class="rotulo">Horários da competição</span>
+                            <!-- Dois campos de hora; o JS valida que o "Fim" seja maior que o "Início" -->
                             <div class="horarios">
                                 <div class="campo-grupo">
                                     <label for="compHorario">Início</label>
@@ -59,6 +63,7 @@
                         </div>
                         <div class="campo-grupo">
                             <label for="compDistancia">Distância <span class="obrig">*</span></label>
+                            <!-- campo-medida junta o input + a "unidade" (km) ao lado -->
                             <div class="campo-medida">
                                 <input class="campo" id="compDistancia" type="number" step="0.01" min="0" placeholder="Insira a distância">
                                 <span class="unidade">km</span>
@@ -66,6 +71,7 @@
                         </div>
                         <div class="campo-grupo">
                             <label for="tipo">Tipo de corrida <span class="obrig">*</span></label>
+                            <!-- Trocar este select mostra/esconde os blocos Maratona/Trail abaixo -->
                             <select class="campo" id="tipo">
                                 <option value="">Escolha uma opção</option>
                                 <option value="Maratona">Maratona</option>
@@ -74,6 +80,7 @@
                         </div>
                         <div class="campo-grupo largura-total">
                             <label for="compAltimetria">Altimetria</label>
+                            <!-- Altimetria é opcional (sem "*") -->
                             <div class="campo-medida">
                                 <input class="campo" id="compAltimetria" type="number" step="0.01" min="0" placeholder="Insira a altimetria">
                                 <span class="unidade">m</span>
@@ -81,6 +88,7 @@
                         </div>
                     </div>
 
+                    <!-- Bloco exclusivo da Maratona; o JS mostra/esconde adicionando/removendo "oculto" -->
                     <div class="campos-maratona campos-tipo">
                         <h2>Dados da Maratona</h2>
                         <div class="form-grade">
@@ -99,6 +107,7 @@
                         </div>
                     </div>
 
+                    <!-- Bloco exclusivo do Trail Running (mesma lógica de mostrar/esconder) -->
                     <div class="campos-trail campos-tipo">
                         <h2>Dados do Trail Running</h2>
                         <div class="form-grade">

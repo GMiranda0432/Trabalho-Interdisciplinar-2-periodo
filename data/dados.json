@@ -5,7 +5,7 @@
       "idade": 32,
       "cpf": "111.111.111-11",
       "nome": "Ana Souza",
-      "contato": "(27) 99999-1111",
+      "email": "ana.souza@email.com",
       "modalidade": "Maratona",
       "peso": 58.5
     },
@@ -14,7 +14,7 @@
       "idade": 41,
       "cpf": "222.222.222-22",
       "nome": "Bruno Lima",
-      "contato": "(27) 99999-2222",
+      "email": "bruno.lima@email.com",
       "modalidade": "Maratona",
       "peso": 74.2
     },
@@ -23,7 +23,7 @@
       "idade": 27,
       "cpf": "333.333.333-33",
       "nome": "Carla Dias",
-      "contato": "(27) 99999-3333",
+      "email": "carla.dias@email.com",
       "modalidade": "Trail Running",
       "peso": 60.0
     },
@@ -32,7 +32,7 @@
       "idade": 35,
       "cpf": "444.444.444-44",
       "nome": "Diego Alves",
-      "contato": "(27) 99999-4444",
+      "email": "diego.alves@email.com",
       "modalidade": "Trail Running",
       "peso": 68.7
     }
@@ -90,5 +90,10 @@
       "grauDificuldade": "Muito dificil",
       "climaEsperado": "Neblina e chuva"
     }
+  ],
+  "inscricoes": [
+    { "competicaoId": 1, "atletaId": 1 },
+    { "competicaoId": 1, "atletaId": 2 },
+    { "competicaoId": 3, "atletaId": 3 }
   ]
 }

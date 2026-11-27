@@ -1,17 +1,25 @@
 <!DOCTYPE html>
+<!-- Página "Visão Geral" (a home). Fica na raiz do projeto, por isso usa caminhos sem "../" -->
 <html lang="pt-br">
 <head>
+    <!-- Define a codificação dos caracteres como UTF-8 (aceita acentos) -->
     <meta charset="UTF-8">
+    <!-- Faz a página se ajustar à largura da tela (celular/tablet) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Texto que aparece na aba do navegador -->
     <title>Visão Geral</title>
+    <!-- Carrega o CSS único de todo o sistema -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <!-- O index.html é a própria tela de Visão Geral (não fica na pasta pags) -->
+    <!-- "app" é a grade que coloca o menu lateral (sidebar) à esquerda e o conteúdo à direita -->
     <div class="app">
+        <!-- Barra lateral de navegação presente em todas as telas -->
         <aside class="sidebar">
             <div class="logo">Gestão de Competições</div>
             <nav>
+                <!-- Cada <li> é um link do menu; "ativo" marca a página atual -->
                 <ul class="menu">
                     <li><a class="ativo" href="index.html">Visão Geral</a></li>
                     <li><a href="pags/atletas.html">Atletas</a></li>
@@ -21,6 +29,7 @@
             </nav>
         </aside>
 
+        <!-- Área principal com o conteúdo da tela -->
         <main class="conteudo">
             <header class="cabecalho">
                 <div>
@@ -29,18 +38,22 @@
                 </div>
             </header>
 
+            <!-- Cartões com os totais; os <p> com id são preenchidos pelo script.js -->
             <section class="grade-dados">
                 <article class="cartao-dado">
                     <h3>Atletas Cadastrados</h3>
+                    <!-- O JS escreve aqui a quantidade de atletas -->
                     <p class="valor" id="quantidadeAtletas">0</p>
                 </article>
                 <article class="cartao-dado">
                     <h3>Competições Cadastradas</h3>
+                    <!-- O JS escreve aqui a quantidade de competições -->
                     <p class="valor" id="quantidadeCompeticoes">0</p>
                 </article>
             </section>
 
             <h2 class="titulo-secao">Acesso Rápido</h2>
+            <!-- Atalhos: cada cartão é um link direto para uma tela de cadastro/relatório -->
             <section class="grade-acesso">
                 <a class="cartao-acesso" href="pags/cadastroAtleta.html">
                     <span class="icone">+</span>
@@ -62,6 +75,8 @@
         </main>
     </div>
 
+    <!-- "type=module" permite usar import/export; aqui o script.js além das funções
+         comuns também roda a lógica dos contadores desta página -->
     <script type="module" src="js/script.js"></script>
 </body>
 </html>

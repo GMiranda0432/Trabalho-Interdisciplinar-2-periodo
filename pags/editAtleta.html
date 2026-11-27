@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<!-- Página de edição de Atleta: mesmo formulário do cadastro, mas já vem preenchido.
+     O id do atleta é lido do endereço (?id=) e guardado no campo escondido atletaId -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -32,6 +34,7 @@
                 <div class="form-caixa">
                     <h2>Dados do atleta</h2>
                     <div class="form-grade">
+                        <!-- Campo escondido: guarda o id do atleta que está sendo editado -->
                         <input id="atletaId" type="hidden">
                         <div class="campo-grupo largura-total">
                             <label for="atletaNome">Nome Completo <span class="obrig">*</span></label>
@@ -39,6 +42,7 @@
                         </div>
                         <div class="campo-grupo">
                             <label for="atletaCpf">CPF <span class="obrig">*</span></label>
+                            <!-- Máscara 000.000.000-00 aplicada pelo JS enquanto digita -->
                             <input class="campo" id="atletaCpf" type="text" placeholder="000.000.000-00">
                         </div>
                         <div class="campo-grupo">
@@ -46,8 +50,8 @@
                             <input class="campo" id="atletaNascimento" type="date">
                         </div>
                         <div class="campo-grupo largura-total">
-                            <label for="atletaContato">Contato <span class="obrig">*</span></label>
-                            <input class="campo" id="atletaContato" type="text" placeholder="Informe o contato">
+                            <label for="atletaEmail">E-mail <span class="obrig">*</span></label>
+                            <input class="campo" id="atletaEmail" type="email" placeholder="nome@dominio.com">
                         </div>
                         <div class="campo-grupo">
                             <label for="atletaModalidade">Modalidade <span class="obrig">*</span></label>
@@ -66,12 +70,14 @@
                 </div>
                 <div class="form-acoes">
                     <a class="btn btn-secundario" href="atletas.html">Cancelar</a>
+                    <!-- O submit atualiza o atleta existente (mesmo id) no JS -->
                     <button class="btn btn-primario" type="submit">Salvar Alterações</button>
                 </div>
             </form>
         </main>
     </div>
 
+    <!-- Script da tela: busca o atleta pelo id da URL, preenche e salva a edição -->
     <script type="module" src="../js/pags/editAtleta.js"></script>
 </body>
 </html>

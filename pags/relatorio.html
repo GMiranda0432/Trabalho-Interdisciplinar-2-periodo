@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- Página de Relatórios: duas abas -> "Por competição" (participantes) e "Relatório Geral" -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +9,7 @@
 </head>
 <body>
     <div class="app">
+        <!-- Menu lateral padrão; "ativo" marca Relatórios -->
         <aside class="sidebar">
             <div class="logo">Gestão de Competições</div>
             <nav>
@@ -28,19 +30,23 @@
                 </div>
             </header>
 
+            <!-- Abas: o JS liga/desliga a classe "ativa" e mostra o painel correspondente -->
             <div class="abas">
                 <button class="aba ativa" id="abaCompeticao" type="button">Por competição</button>
                 <button class="aba" id="abaGeral" type="button">Relatório Geral</button>
             </div>
 
+            <!-- Painel 1: participantes de uma competição escolhida -->
             <section id="painelCompeticao">
                 <div class="campo-grupo">
                     <label for="relCompeticao">Selecione a competição</label>
+                    <!-- Preenchido pelo JS com todas as competições -->
                     <select class="campo" id="relCompeticao">
                         <option value="">Selecione a competição</option>
                     </select>
                 </div>
 
+                <!-- Cartões com a modalidade e o total de inscritos da competição escolhida -->
                 <div class="destaque" style="margin-top: 40px;">
                     <article class="cartao-dado">
                         <span class="rotulo">Modalidade</span>
@@ -64,13 +70,16 @@
                                     <th>Modalidade</th>
                                 </tr>
                             </thead>
+                            <!-- Preenchido pelo JS com os atletas inscritos na competição -->
                             <tbody id="tabelaParticipantes"></tbody>
                         </table>
                     </div>
                 </div>
             </section>
 
+            <!-- Painel 2: resumo geral (começa escondido com a classe "oculto") -->
             <section id="painelGeral" class="oculto">
+                <!-- Três cartões com os totais gerais -->
                 <div class="grade-tres">
                     <article class="cartao-dado">
                         <h3>Total de competições</h3>
@@ -98,6 +107,7 @@
                                     <th>Inscritos</th>
                                 </tr>
                             </thead>
+                            <!-- Preenchido pelo JS: uma linha por competição com o nº de inscritos -->
                             <tbody id="tabelaGeral"></tbody>
                         </table>
                     </div>

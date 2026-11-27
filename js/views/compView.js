@@ -1,44 +1,53 @@
+// Traz a View base (métodos de DOM) e as conversões de data usadas no formulário
 import { View, paraDataBr, paraDataIso } from "../script.js";
 
 /* View da Competição — herda a base compartilhada (script.js) e só cuida do DOM */
 class CompView extends View {
   // Lê o id da competição (input oculto usado na edição)
   lerIdCompeticao() {
+    // Pega o valor do campo "#compId" e converte para número
     return Number(this.lerValor("#compId"));
   }
 
   // Lê o tipo de corrida (Maratona / TrailRunning)
   lerTipo() {
+    // Valor escolhido no <select> de tipo
     return this.lerValor("#tipo");
   }
 
   // Filtros da listagem
   lerBusca() {
+    // Texto digitado na busca (por id)
     return this.lerValor("#buscaId");
   }
 
   lerTipoFiltro() {
+    // Tipo escolhido no filtro ("" = todos)
     return this.lerValor("#filtroTipo");
-  }
-
-  // Nome amigável da subclasse (TrailRunning -> Trail Running)
-  rotuloTipo(comp) {
-    if (!comp) return "";
-    return comp.constructor.name === "TrailRunning" ? "Trail Running" : "Maratona";
   }
 
   // Lê os campos do formulário e devolve um objeto no formato do Model
   lerCompeticao() {
+    // Pega o horário inicial e o final (o final é opcional)
     const inicio = this.lerValor("#compHorario");
     const fim = this.lerValor("#compHorarioFim");
+    // Guarda se a altimetria foi realmente informada (o campo é opcional)
+    const altimetriaInformada = this.lerValor("#compAltimetria") !== "";
     return {
       tipo: this.lerTipo(),
+      // Horário inicial e final separados (usados na validação) e o texto exibido
+      horarioInicio: inicio,
+      horarioFim: fim,
+      // Se tem o final, exibe "início - fim"; senão mostra só o início
       horario: fim ? `${inicio} - ${fim}` : inicio,
+      // O input date vem como aaaa-mm-dd; converte para dd/mm/aaaa
       data: paraDataBr(this.lerValor("#compData")),
       nome: this.lerValor("#compNome"),
       local: this.lerValor("#compLocal"),
+      // Campos numéricos são convertidos de texto para número
       distancia: Number(this.lerValor("#compDistancia")),
       altimetria: Number(this.lerValor("#compAltimetria")),
+      altimetriaInformada: altimetriaInformada,
       objetivo: this.lerValor("#compObjetivo"),
       fechamentoVias: this.lerValor("#compFechamentoVias"),
       pontosHidratacao: Number(this.lerValor("#compPontosHidratacao")),
@@ -51,18 +60,23 @@ class CompView extends View {
   // Mostra os campos da subclasse conforme o tipo escolhido.
   // Sem tipo selecionado o padrão é Maratona (mesma regra do Model).
   alternarCamposTipo() {
+    // Se o tipo for "TrailRunning", "maratona" fica false; senão fica true
     const tipo = this.lerTipo();
     const maratona = tipo !== "TrailRunning";
+    // Mostra os campos de maratona e esconde os de trail (ou o contrário)
     this.alternarClasse(".campos-maratona", "oculto", !maratona);
     this.alternarClasse(".campos-trail", "oculto", maratona);
   }
 
   // Preenche o formulário de edição a partir de uma competição
   preencherCompeticao(comp) {
+    // Separa o horário guardado ("07:00 - 12:00") em início e fim
     const [inicio, fim] = String(comp.horario ?? "").split(" - ");
     this.definirValor("#compId", comp.id);
+    // constructor.name devolve "Maratona" ou "TrailRunning" para marcar o tipo certo
     this.definirValor("#tipo", comp.constructor.name);
     this.definirValor("#compNome", comp.nome);
+    // Converte a data exibida (dd/mm/aaaa) para o formato do input date (aaaa-mm-dd)
     this.definirValor("#compData", paraDataIso(comp.data));
     this.definirValor("#compLocal", comp.local);
     this.definirValor("#compHorario", inicio ?? "");
@@ -75,77 +89,71 @@ class CompView extends View {
     this.definirValor("#compCheckPoint", comp.checkPoint ?? "");
     this.definirValor("#compGrauDificuldade", comp.grauDificuldade ?? "");
     this.definirValor("#compClimaEsperado", comp.climaEsperado ?? "");
+    // Depois de preencher, ajusta quais campos aparecem conforme o tipo
     this.alternarCamposTipo();
   }
 
   // Monta as linhas da tabela de competições
   mostrarTabela(competicoes) {
-    const corpo = this.elemento("#listaCompeticoes");
-    if (!corpo) return;
-    if (!competicoes.length) {
-      corpo.innerHTML = `<tr><td class="tabela-vazia" colspan="6">Nenhuma competição encontrada.</td></tr>`;
-      return;
-    }
-    corpo.innerHTML = competicoes.map((c) => `
+    // preencherTabela cria as <tr> (ou a linha de aviso quando a lista está vazia)
+    this.preencherTabela("#listaCompeticoes", competicoes, (c) => `
       <tr>
         <td>${this.escapar(c.id)}</td>
         <td>${this.escapar(c.nome)}</td>
         <td>${this.escapar(c.local)}</td>
         <td>${this.escapar(c.data)}</td>
-        <td>${this.escapar(this.rotuloTipo(c))}</td>
+        <td>${this.escapar(c.modalidade)}</td>
         <td>
           <div class="col-acoes">
             <a class="acao acao-editar" href="editComp.html?id=${encodeURIComponent(c.id)}">Editar</a>
             <button class="acao acao-excluir" type="button" data-id="${this.escapar(c.id)}" data-nome="${this.escapar(c.nome)}">Excluir</button>
           </div>
         </td>
-      </tr>`).join("");
+      </tr>`, 6, "Nenhuma competição encontrada.");
   }
 
   mostrarResumo(exibidos, total) {
+    // Escreve o texto "Exibindo X de Y" no resumo
     this.escrever("#resumoCompeticoes", `Exibindo ${exibidos} de ${total} competições`);
   }
 
   confirmarExclusao(nome) {
+    // Escreve a pergunta no modal e o abre
     this.escrever("#mensagemExclusao", `Deseja realmente excluir ${nome}?`);
     this.abrirModal("#modalCompeticao");
   }
 
   // ---- Relatórios ----
   mostrarParticipantes(atletas) {
-    const corpo = this.elemento("#tabelaParticipantes");
-    if (!corpo) return;
-    if (!atletas.length) {
-      corpo.innerHTML = `<tr><td class="tabela-vazia" colspan="4">Nenhum atleta inscrito nesta competição.</td></tr>`;
-      return;
-    }
-    corpo.innerHTML = atletas.map((a) => `
+    // Monta a tabela de atletas inscritos na competição escolhida
+    this.preencherTabela("#tabelaParticipantes", atletas, (a) => `
       <tr>
         <td>${this.escapar(a.id)}</td>
         <td>${this.escapar(a.nome)}</td>
         <td>${this.escapar(a.idade)}</td>
         <td>${this.escapar(a.modalidade)}</td>
-      </tr>`).join("");
+      </tr>`, 4, "Nenhum atleta inscrito nesta competição.");
   }
 
   mostrarResumoCompeticao(comp, inscritos) {
-    this.escrever("#relModalidade", this.rotuloTipo(comp) || "-");
+    // Mostra a modalidade da competição (ou "-" se nenhuma) e a quantidade de inscritos
+    this.escrever("#relModalidade", comp ? comp.modalidade : "-");
     this.escrever("#relInscritos", inscritos);
   }
 
   mostrarRelatorioGeral(itens, totais) {
+    // Preenche os três números do topo do relatório
     this.escrever("#geralCompeticoes", totais.competicoes);
     this.escrever("#geralAtletas", totais.atletas);
     this.escrever("#geralInscricoes", totais.inscricoes);
-    const corpo = this.elemento("#tabelaGeral");
-    if (!corpo) return;
-    corpo.innerHTML = itens.map((i) => `
+    // E monta a tabela geral: uma linha por competição com sua quantidade de inscritos
+    this.preencherTabela("#tabelaGeral", itens, (i) => `
       <tr>
         <td>${this.escapar(i.id)}</td>
         <td>${this.escapar(i.nome)}</td>
         <td>${this.escapar(i.modalidade)}</td>
         <td>${this.escapar(i.inscritos)}</td>
-      </tr>`).join("");
+      </tr>`, 4, "Nenhuma competição cadastrada.");
   }
 }
 

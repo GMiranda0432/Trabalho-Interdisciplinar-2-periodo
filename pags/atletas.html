@@ -1,13 +1,17 @@
 <!DOCTYPE html>
+<!-- Página de listagem de Atletas (tabela + busca/filtro + modal de exclusão).
+     Fica em /pags, por isso os caminhos sobem um nível com "../" -->
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atletas</title>
+    <!-- CSS único do sistema; "../" sobe de /pags para a raiz -->
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
     <div class="app">
+        <!-- Menu lateral (igual em todas as páginas); "ativo" marca Atletas -->
         <aside class="sidebar">
             <div class="logo">Gestão de Competições</div>
             <nav>
@@ -21,6 +25,7 @@
         </aside>
 
         <main class="conteudo">
+            <!-- Cabeçalho com o título e o botão que leva ao cadastro -->
             <header class="cabecalho">
                 <div>
                     <h1>Atletas</h1>
@@ -29,15 +34,18 @@
                 <a class="btn btn-primario" href="cadastroAtleta.html">+ Novo Atleta</a>
             </header>
 
+            <!-- Barra de busca/filtro; o JS escuta o campo de busca (input) e o select (change) -->
             <div class="barra">
                 <input class="campo busca" id="buscaId" type="text" placeholder="Buscar atleta por ID">
                 <select class="campo filtro" id="filtroModalidade">
+                    <!-- value="" = "todas"; os demais filtram por modalidade -->
                     <option value="">Todas as Modalidades</option>
                     <option value="Maratona">Maratona</option>
                     <option value="Trail Running">Trail Running</option>
                 </select>
             </div>
 
+            <!-- Caixa da tabela: o <thead> é fixo e o <tbody> é preenchido pelo JS -->
             <div class="tabela-caixa">
                 <div class="tabela-rolagem">
                     <table>
@@ -51,27 +59,33 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
+                        <!-- A view injeta aqui uma <tr> por atleta (linhas com os botões de ação) -->
                         <tbody id="listaAtletas"></tbody>
                     </table>
                 </div>
             </div>
+            <!-- Texto "Exibindo X de Y", atualizado pelo JS -->
             <p class="info-tabela" id="resumoAtletas">Exibindo 0 de 0 atletas</p>
         </main>
     </div>
 
-    <!-- Modal de exclusão de atleta (integrado à lista, não é página separada) -->
+    <!-- Modal de exclusão de atleta (integrado à lista, não é página separada).
+         Ele fica escondido e aparece quando o JS adiciona a classe "aberto" -->
     <div class="modal-fundo" id="modalAtleta">
         <div class="modal">
             <h2>Excluir Atleta</h2>
+            <!-- O JS troca este texto para "Deseja realmente excluir <nome>?" -->
             <p class="mensagem" id="mensagemExclusao">Deseja realmente excluir este atleta?</p>
             <p class="aviso">Esta ação não poderá ser desfeita.</p>
             <div class="modal-acoes">
+                <!-- "cancelar" só fecha o modal; "confirmar" chama a exclusão no JS -->
                 <button class="btn cancelar" id="cancelarExclusao" type="button">Cancelar</button>
                 <button class="btn btn-perigo" id="confirmarExclusao" type="button">Excluir</button>
             </div>
         </div>
     </div>
 
+    <!-- Script exclusivo desta tela (liga a AtletaView ao AtletaController) -->
     <script type="module" src="../js/pags/atletas.js"></script>
 </body>
 </html>
