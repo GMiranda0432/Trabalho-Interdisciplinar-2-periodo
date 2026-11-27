@@ -1,0 +1,99 @@
+﻿Cadastro de Atletas
+Como organizador, quero cadastrar atletas no sistema para manter um controle dos participantes das competições.
+* Permitir o cadastro com nome, idade, documento, nacionalidade e modalidade.
+* Verificar se os campos obrigatórios foram preenchidos.
+* Exibir uma mensagem caso alguma informação esteja incorreta ou faltando.
+* Após o cadastro, o atleta deve aparecer na lista de atletas registrados.
+Listagem de Atletas
+Como organizador, quero visualizar os atletas cadastrados para consultar suas informações quando necessário.
+ 
+* Exibir uma lista com todos os atletas cadastrados.
+* Mostrar as principais informações de cada atleta, como nome, idade, nacionalidade e modalidade.
+* Caso não existam atletas cadastrados, exibir uma mensagem informando que a lista está vazia.
+Filtrar Atletas por Modalidade
+Como organizador, quero filtrar os atletas por modalidade para encontrar os participantes de cada tipo de corrida.
+ 
+* Permitir selecionar uma modalidade para realizar o filtro.
+* Mostrar apenas os atletas que pertencem à modalidade escolhida.
+* Informar quando nenhum atleta for encontrado.
+Editar Atleta
+Como organizador, quero editar os dados de um atleta para corrigir informações ou atualizar seu cadastro.
+* Permitir selecionar um atleta cadastrado para edição.
+* Exibir seus dados atuais.
+* Salvar as alterações após verificar os campos obrigatórios.
+* Atualizar as informações na listagem.
+Excluir Atleta
+Como organizador, quero excluir atletas do sistema para remover cadastros que não são mais necessários.
+Critérios de aceitação:
+* Permitir selecionar o atleta que será excluído.
+* Solicitar confirmação antes da exclusão.
+* Remover o atleta da listagem após a confirmação.
+* Respeitar as regras definidas para atletas que possuem inscrições.
+Cadastro de Competições
+Como organizador, quero cadastrar competições de Maratona e Trail Running para organizar os eventos de corrida.
+* Permitir escolher o tipo de competição.
+* Solicitar nome, local, data, distância e número máximo de participantes.
+* Apresentar os campos específicos de cada modalidade.
+* Verificar os dados obrigatórios antes de salvar.
+* Adicionar a competição cadastrada à listagem.
+Listagem de Competições
+Como organizador, quero visualizar as competições cadastradas para acompanhar os eventos disponíveis.
+ 
+* Exibir todas as competições cadastradas.
+* Mostrar nome, modalidade, local, data e distância.
+* Permitir consultar as informações de uma competição.
+* Informar quando não houver competições cadastradas.
+Filtrar Competições
+Como organizador, quero filtrar as competições por modalidade para encontrar os eventos que estou procurando.
+* Permitir filtrar por Maratona ou Trail Running.
+* Exibir somente as competições da modalidade escolhida.
+* Permitir voltar à listagem completa.
+* Informar quando não houver resultados.
+Editar Competição
+Como organizador, quero editar uma competição cadastrada para atualizar informações sobre o evento.
+ 
+* Permitir selecionar uma competição para edição.
+* Exibir as informações já cadastradas.
+* Permitir alterar os dados do evento.
+* Verificar os campos obrigatórios antes de salvar.
+* Atualizar as informações na listagem.
+Excluir Competição
+Como organizador, quero excluir competições cadastradas para remover eventos que não serão mais utilizados.
+* Permitir selecionar uma competição para exclusão.
+* Solicitar confirmação antes de excluir.
+* Remover a competição da listagem após a confirmação.
+* Respeitar as regras definidas para competições que possuem atletas inscritos.
+Inscrever Atleta em Competição
+Como organizador, quero inscrever atletas nas competições para controlar quem participará de cada evento.
+ 
+* Permitir selecionar um atleta cadastrado.
+* Permitir escolher a competição em que ele será inscrito.
+* Impedir inscrições duplicadas na mesma competição.
+* Não permitir inscrições quando o limite de participantes for atingido.
+* Verificar se a modalidade do atleta é compatível com a competição, conforme as regras definidas.
+Consultar Atletas Inscritos
+Como organizador, quero visualizar os atletas inscritos em uma competição para acompanhar seus participantes.
+ 
+* Permitir selecionar uma competição cadastrada.
+* Exibir a lista de atletas inscritos nela.
+* Mostrar a quantidade de participantes inscritos.
+* Informar quando a competição ainda não possuir inscrições.
+Consultar Competições de um Atleta
+Como organizador, quero consultar as competições em que um atleta está inscrito para acompanhar suas participações.
+ 
+* Permitir selecionar um atleta cadastrado.
+* Exibir as competições em que ele está inscrito.
+* Mostrar informações básicas dos eventos, como nome, modalidade e data.
+* Informar quando o atleta não possuir inscrições.
+Relatório de Competição
+Como organizador, quero visualizar um resumo de uma competição para consultar suas principais informações.
+* Permitir selecionar uma competição cadastrada.
+* Exibir nome, modalidade, local, data e distância.
+* Mostrar a quantidade de atletas inscritos.
+* Apresentar as informações de forma organizada e fácil de consultar.
+Relatório Geral de Competições
+Como organizador, quero visualizar um relatório geral das competições para acompanhar os eventos cadastrados no sistema.
+* Exibir todas as competições cadastradas.
+* Mostrar a modalidade e a quantidade de inscritos de cada evento.
+* Permitir comparar a quantidade de participantes entre as competições.
+* Informar quando não houver competições cadastradas.
